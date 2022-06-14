@@ -1,0 +1,46 @@
+class Solution {
+    public List<String> letterCombinations(String digits) {
+   Map<Character,String> hm=new HashMap<>();
+        String s[]=new String[]{"","","abc","def","ghi","jkl","mno","pqrs","tuv","wxyz"};
+        hm.put('2',"abc");
+        hm.put('3',"def");
+        hm.put('4',"ghi");
+        hm.put('5',"jkl");
+        hm.put('6',"mno");
+        hm.put('7',"pqrs");
+        hm.put('8',"tuv");
+        hm.put('9',"wxyz");
+       
+       
+        List<String> l1=new ArrayList<>();
+        StringBuilder sb=new StringBuilder();
+        if(digits.length()==0) return l1;
+      helper(hm,digits,0,l1,sb);
+        
+        return l1;
+}
+    //sb is equal to output empty string
+        void helper( Map<Character,String> hm,String digits,int i,List<String> l1,StringBuilder sb){
+            
+            //base case
+            if(i>=digits.length()){
+                 l1.add(sb.toString());
+                return;
+            } 
+            
+            if(sb.length()==digits.length())
+            {
+               
+                return ;
+            }
+            String char_num=hm.get(digits.charAt(i)); //digits.charAt(i)
+         //    System.out.println(char_num);
+            for(int j=0;j<char_num.length();j++){
+                helper(hm,digits,i+1,l1,sb.append(char_num.charAt(j)));
+                sb.deleteCharAt(sb.length() - 1);
+            }
+            
+        }
+    
+    
+}

@@ -1,0 +1,91 @@
+/**
+ * Definition for singly-linked list.
+ * public class ListNode {
+ *     int val;
+ *     ListNode next;
+ *     ListNode() {}
+ *     ListNode(int val) { this.val = val; }
+ *     ListNode(int val, ListNode next) { this.val = val; this.next = next; }
+ * }
+ */
+class Solution {
+    public ListNode removeNthFromEnd(ListNode head, int n) {
+     
+    if(head==null || (head.next==null && n==1)) return null;
+     
+       
+    /*
+    //this is reversing technique
+    ListNode temp=head;
+        
+           if(n==1){
+              ListNode temps=head;
+      while(temps.next.next!=null){
+          
+          temps=temps.next;
+      }
+       temps.next=null;
+               return head;
+        }
+        
+        
+        
+     ListNode prev=null,next;
+        
+        while(temp!=null){
+            next=temp.next;
+            temp.next=prev;
+            prev=temp;
+            temp=next;
+        }
+        head=prev;
+        ListNode case1=head;
+       
+       int i=1;
+        ListNode temp1=head;
+       ListNode prev_del=temp1;
+      
+        while(i<n){
+            prev_del=temp1;
+            temp1=temp1.next;
+            i++;
+        }
+        
+      
+        ListNode next_del=temp1.next;   //next is 1
+        prev_del.next=next_del;        // prec
+        
+       ListNode result=head;
+        prev=null;
+        next=null;
+        while(result!=null){
+            next=result.next;
+            result.next=prev;
+            prev=result;
+            result=next;
+        }
+        head=prev; 
+        return head; */
+        
+        //other  is used dummy node and 2 pointer technique
+        ListNode dummy_head=new ListNode(0);
+        dummy_head.next=head;
+        ListNode left=dummy_head;
+        ListNode right=head;
+        
+        
+        while(n>0 && right!=null){
+            right=right.next;
+            n--;
+            
+        }
+        
+        while(right !=null){
+            left=left.next;
+            right=right.next;
+        }
+        left.next=left.next.next;
+        
+        return dummy_head.next;
+    }
+}

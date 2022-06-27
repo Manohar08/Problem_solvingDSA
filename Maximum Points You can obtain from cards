@@ -1,0 +1,38 @@
+class Solution {
+    int max=0;
+    public int maxScore(int[] a, int ks) {
+      int i=0;
+        int j=0;
+        int sum=0;
+        int total_sum=0;
+        int sw=a.length-ks;
+        for(int k=0;k<a.length;k++){
+           total_sum+=a[k];
+        }
+        //Uses Sliding window technique with fixed K
+      int max=0;
+        while(i<=j && i>=0 && j<a.length){
+              sum+=a[j];
+            
+              if(j-i+1>sw){
+                 sum-=a[i];
+               // sum+=a[j];
+                i++;
+            }
+            if(j-i+1 ==sw){
+                
+                max=Math.max(total_sum-sum,max);
+             
+            }
+          
+          j++;
+            
+        }
+        return max;
+        
+        
+        
+        
+        
+    }
+}

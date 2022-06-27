@@ -1,0 +1,42 @@
+class Solution {
+    
+    public int rob(int[] nums) {
+  int []      dp=new int[nums.length+1];
+       for(int i=0;i<dp.length;i++) dp[i]=-1;
+        int even=0,odd=0;
+        int i=nums.length-2;
+        int j=nums.length-1;
+   int result=     Rob( nums,nums.length-1,dp);
+        return result;
+    }
+    
+  /*  int Rob(int a[],int n,int dp[]){
+    
+        //Base case
+        if(n<0 ){
+            
+            return 0;}
+if(dp[n]!=-1) return dp[n];
+        
+       
+        return  dp[n]= Math.max(a[n]+Rob(a,n-2,dp),Rob(a,n-1,dp));
+        
+    } */
+    //tabualtion method
+    int Rob(int a[],int n,int dp[]){
+        
+        int  neg=0;
+        dp[0]=0;
+            for(int i=1;i<n;i++){
+            
+            if(i<2){
+                dp[i]=0;
+            }
+            else{
+                                dp[i]=Math.max(a[i]+dp[i-2],dp[i-1]);
+            }
+        }
+        return dp[n];
+        
+    }
+}

@@ -1,0 +1,77 @@
+class Solution {
+    List<List<Integer>> al1=new ArrayList<>();
+    public List<List<Integer>> combinationSum(int[] candidates, int target) {
+        
+        
+        List<Integer> l1=new ArrayList<>();
+        int sum=0;
+        combinations(candidates,target,l1,0,sum);
+        return al1;
+        
+    }
+    
+    void combinations(int nums[],int target,List<Integer> l1,int i,int sum){
+ 
+        
+        //base case
+     
+        if(target==sum)
+        {
+            al1.add(new ArrayList<>(l1));
+            return;
+        }
+       
+        
+        for(int j=i;j<nums.length;j++){
+         //          System.out.println("j is" + i);
+           sum+=nums[j];
+            if(sum<=target){
+            l1.add(nums[j]);
+          
+            combinations(nums,target,l1,j,sum);
+            l1.remove(l1.size()-1);
+            
+            }
+            sum-=nums[j];
+        }
+    }
+}
+//Method 2
+class Solution {
+    List<List<Integer>> al1=new ArrayList<>();
+    public List<List<Integer>> combinationSum(int[] candidates, int target) {
+        
+        
+        List<Integer> l1=new ArrayList<>();
+        int sum=0;
+        combinations(candidates,target,l1,0,sum);
+        return al1;
+        
+    }
+    
+    void combinations(int nums[],int target,List<Integer> l1,int i,int sum){
+ 
+        
+        //base case
+        if(sum>target) return;
+        if(target==sum)
+        {
+            al1.add(new ArrayList<>(l1));
+            return;
+        }
+       
+        
+        for(int j=i;j<nums.length;j++){
+         //          System.out.println("j is" + i);
+           sum+=nums[j];
+          
+            l1.add(nums[j]);
+          
+            combinations(nums,target,l1,j,sum);
+            l1.remove(l1.size()-1);
+            
+            }
+            sum-=nums[j];
+       
+    }
+}

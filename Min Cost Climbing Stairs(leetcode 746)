@@ -1,0 +1,27 @@
+class Solution {
+      int min=Integer.MIN_VALUE;
+    public int minCostClimbingStairs(int[] cost) {
+      int dp[]=new int[cost.length+1];
+        for(int i=0;i<dp.length;i++) dp[i]=-1;
+            
+            
+            int sum=0;
+        int index_0=minCost(cost,0,dp);
+        int index_1=minCost(cost,1,dp);
+        return Math.min(index_0,index_1);
+    }
+    
+    
+    int minCost(int a[],int i,int dp[]){
+        
+        //base case
+        if(i>a.length-1){
+          
+            return 0;
+        }
+        if(dp[i]!=-1) return dp[i];
+        
+        return dp[i]=a[i]+Math.min(minCost(a,i+1,dp),minCost(a,i+2,dp));
+        
+    }
+}

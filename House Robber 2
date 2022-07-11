@@ -1,0 +1,32 @@
+class Solution {
+    public int rob(int[] nums) {
+        int dp[]=new int[nums.length+1];
+        for(int i=0;i<dp.length;i++) dp[i]=-1;
+        int dp1[]=new int[nums.length+1];
+        for(int i=0;i<dp1.length;i++) dp1[i]=-1;
+      if(nums.length==1) return nums[0];
+  int res1=  helper(nums,nums.length-2,0,dp);
+     //   int res2=helper2(nums,0,dp1);
+        int res2=helper(nums,nums.length-1,1,dp1);
+         
+        return Math.max(res1,res2);
+    }
+    
+    int helper(int nums[],int start,int end,int dp[]){
+        
+        //base case
+     // if(n<=0) return 0;
+        if(start<end) return 0;
+        
+        if(dp[start]!=-1) return dp[start];
+        return dp[start]= Math.max(nums[start]+helper(nums,start-2,end,dp),helper(nums,start-1,end,dp));
+        
+    }
+    int helper2(int nums[],int n,int dp[]){
+        
+        //base case
+        if(n>=nums.length-1) return 0;
+         if(dp[n]!=-1) return dp[n];
+        return dp[n]= Math.max(nums[n]+helper2(nums,n+2,dp),helper2(nums,n+1,dp));
+    }
+}

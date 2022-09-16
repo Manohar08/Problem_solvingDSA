@@ -1,0 +1,28 @@
+class Solution {
+    public int maximumScore(int[] nums, int[] multipliers) {
+     int dp[][]=new int[multipliers.length+1][multipliers.length+1];
+   
+        for(int s[]:dp)Arrays.fill(s,-2);
+          
+                   
+        
+        return maxScore(nums,multipliers,0,0,dp);
+    }
+    
+    int maxScore(int nums[],int mult[],int start,int i,int dp[][]){
+        
+        //base case
+        if(i==mult.length){
+            return 0;
+        }
+        if(dp[start][i]!=-2) return dp [start][i];
+        
+        int start_res=nums[start]*mult[i]+maxScore(nums,mult,start+1,i+1,dp);
+        int end_res=nums[nums.length-1-(i-start)]*mult[i]+maxScore(nums,mult,start,i+1,dp);
+        
+        dp[start][i]=Math.max(start_res,end_res);
+     return    Math.max(start_res,end_res);
+    }
+}
+//end_pick= ith ele in mult array where we are currently - no of ele picks on  leftside gives us no of ele picked on right side
+//end=totalLength-end_pick-1;
